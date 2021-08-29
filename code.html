@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>App Name: A Coding Project By Eric Bruce</title>
+    <title>TacoCat: A Coding Project By Eric Bruce</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -12,6 +12,7 @@
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/5db21ba9c6.js" crossorigin="anonymous"></script>    
     <link rel="stylesheet" href="/css/site.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Alfa Slab One">
     <link rel="stylesheet" href="/css/prism.css">    
     <link rel="icon" href="/img/favicon-32x32.png" type="image/png">
    <!-- Convert this to an external style sheet -->
@@ -21,7 +22,7 @@
     <!-- ===== Nav Section ===== -->
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#"><img src="/img/Eric Bruce_minilogo.svg" width="30" height="24" class="d-inline-block align-text-top">APP NAME</a>
+            <a class="navbar-brand" href="#"><img src="/img/Eric Bruce_minilogo.svg" width="30" height="24" class="d-inline-block align-text-top"><span class="logo-font">TacoCat</span></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
                 aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -38,7 +39,7 @@
                         <a class="nav-link active" aria-current="page" href="code.html">The Code</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" target="_blank" href="#">Git Repo</a>
+                        <a class="nav-link" target="_blank" href="https://github.com/EB03/TacoCat">Git Repo</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" target="_blank" href="https://ericbruce-portfolio.netlify.app">About</a>
@@ -50,22 +51,63 @@
     <!-- ===== Main Section ===== -->
     <main class="flex-shrink-0">
         <div class="container py-4 px-5 m-5">
-            <h2 class="border-3 border-bottom border-dark">The Code for APP NAME</h2>
+            <h2 class="border-3 border-bottom border-dark">The Code for <span class="logo-font">TacoCat</span></h2>
             <div class="row row-cols-1 row-cols-lg-2">
                 <div class="col-lg-8">
                     <pre class="line-numbers">
                         <code class="language-javascript">
-                            // Call Hello World
-                            function HelloWorld() {
-                                alert("Hello World");
+                            
+                            function getUserInput() {
+                                let userInput = document.getElementById("userInput").value;
+
+                                let palindrome = calculatePalindrome(userInput);
+
+                                displayPalindrome(palindrome);
+                            }
+
+                            function calculatePalindrome(userInput) {
+                                let result = document.getElementById("result");
+                                let reversed = [];
+                                let reversedNoSpaces = "";
+                                let userInputNoSpaces = "";
+                                let isPalindrome = "";
+
+                                for (let i = userInput.length - 1; i >= 0; i--) {
+                                    reversed += userInput[i];    
+                                }
+
+                                //If we don't take out spaces, it won't be able to compare the arrays to see if they're palindrome correctly
+                                reversedNoSpaces = reversed.replace(/\s/g, '');
+                                userInputNoSpaces = userInput.replace(/\s/g, '');
+
+                                //Need to reset the class list each time the user clicks the button to apply the correct alert status
+                                result.classList.remove("alert", "alert-success", "alert-warning", "alert-danger");
+
+                                if(userInputNoSpaces == reversedNoSpaces) {
+                                    if(userInputNoSpaces.length == 1) {
+                                        result.classList.add("alert", "alert-warning");
+                                        isPalindrome = `I guess you could say ${reversed} is a palindrome, but it only contains 1 character!`;
+                                    } else if(userInputNoSpaces.length < 1) {
+                                        result.classList.add("alert", "alert-warning");
+                                        isPalindrome = `I guess you could say ${reversed} is a palindrome, but it doesn't contain any characters!`;
+                                    } else {
+                                        result.classList.add("alert", "alert-success");
+                                        isPalindrome = `Success! ${reversed} is a palindrome!`;
+                                    }
+                                } else {
+                                    result.classList.add("alert", "alert-danger")
+                                    isPalindrome = `Oh No! ${userInput} is not a plaindrome! This is the output backwards: ${reversed}`;
+                                }
+                                return isPalindrome;
+                            }
+
+                            function displayPalindrome(palindrome) {
+                                let result = document.getElementById("result");
+                                result.classList.remove("invisible");
+                                result.innerHTML = palindrome;
                             }
                         </code>
                     </pre>
-                </div>
-                <div class="col-lg-4">
-                    <p>The Code is structured in one function.</p>
-                    <h5>Hello World</h5>
-                    <p>Hello World is function that displays an alert with a message of "Hello World"</p>
                 </div>
             </div>
         </div>
