@@ -2,49 +2,47 @@
 function getUserInput() {
     let userInput = document.getElementById("userInput").value;
 
-    let palindrome = calculatePalindrome(userInput);
+    let returnObj = calculatePalindrome(userInput);
 
-    displayPalindrome(palindrome);
+    displayPalindrome(returnObj);
 }
 
 function calculatePalindrome(userInput) {
     let result = document.getElementById("result");
     let reversed = [];
-    let reversedNoSpaces = "";
+    let returnObj = {};
     let userInputNoSpaces = "";
-    let isPalindrome = "";
 
-    for (let i = userInput.length - 1; i >= 0; i--) {
-        reversed += userInput[i];    
+    userInput = userInput.toLowerCase();
+    let regex = /[^a-z0-9]/gi;
+    userInputNoSpaces = userInput.replace(regex, "");
+
+    for (let i = userInputNoSpaces.length - 1; i >= 0; i--) {
+        reversed += userInputNoSpaces[i];    
     }
-
-    //If we don't take out spaces, it won't be able to compare the arrays to see if they're palindrome correctly
-    reversedNoSpaces = reversed.replace(/\s/g, '');
-    userInputNoSpaces = userInput.replace(/\s/g, '');
-
-    //Need to reset the class list each time the user clicks the button to apply the correct alert status
-    result.classList.remove("alert", "alert-success", "alert-warning", "alert-danger");
-
-    if(userInputNoSpaces == reversedNoSpaces) {
+    
+    returnObj.reversed = reversed;
+    
+    if(userInputNoSpaces == reversed) {
         if(userInputNoSpaces.length == 1) {
-            result.classList.add("alert", "alert-warning");
-            isPalindrome = `I guess you could say ${reversed} is a palindrome, but it only contains 1 character!`;
+            returnObj.msg = `I guess you could say ${userInput} is a palindrome, but it only contains 1 character!`;
+            returnObj.alert = "alert-warning";
         } else if(userInputNoSpaces.length < 1) {
-            result.classList.add("alert", "alert-warning");
-            isPalindrome = `I guess you could say ${reversed} is a palindrome, but it doesn't contain any characters!`;
+            returnObj.msg = `I guess you could say ${userInput} is a palindrome, but it doesn't contain any characters!`;
+            returnObj.alert = "alert-warning";
         } else {
-            result.classList.add("alert", "alert-success");
-            isPalindrome = `Success! ${reversed} is a palindrome!`;
+            returnObj.msg = `Success! ${userInput} is a palindrome!`;
+            returnObj.alert = "alert-success";
         }
     } else {
-        result.classList.add("alert", "alert-danger")
-        isPalindrome = `Oh No! ${userInput} is not a plaindrome! This is the output backwards: ${reversed}`;
+        returnObj.msg = `Oh No! ${userInput} is not a plaindrome! This is the output backwards: ${returnObj.reversed}`;
+        returnObj.alert = "alert-danger";
     }
-    return isPalindrome;
+    return returnObj;
 }
 
-function displayPalindrome(palindrome) {
-    let result = document.getElementById("result");
-    result.classList.remove("invisible");
-    result.innerHTML = palindrome;
+function displayPalindrome(returnObj) {
+    result.classList.remove("alert", "alert-success", "alert-warning", "alert-danger", "invisible");
+    result.classList.add("alert", `${returnObj.alert}`);
+    result.innerHTML = `${returnObj.msg}`;
 }
