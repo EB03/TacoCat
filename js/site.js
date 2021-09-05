@@ -8,7 +8,6 @@ function getUserInput() {
 }
 
 function calculatePalindrome(userInput) {
-    let result = document.getElementById("result");
     let reversed = [];
     let returnObj = {};
     let userInputNoSpaces = "";
@@ -28,14 +27,14 @@ function calculatePalindrome(userInput) {
             returnObj.msg = `I guess you could say ${userInput} is a palindrome, but it only contains 1 character!`;
             returnObj.alert = "alert-warning";
         } else if(userInputNoSpaces.length < 1) {
-            returnObj.msg = `I guess you could say ${userInput} is a palindrome, but it doesn't contain any characters!`;
+            returnObj.msg = `You didn't enter anything! Please enter a word, sentence or phrase`;
             returnObj.alert = "alert-warning";
         } else {
-            returnObj.msg = `Success! ${userInput} is a palindrome!`;
+            returnObj.msg = `Success! ${userInput} is a palindrome! The string reversed is: ${returnObj.reversed}`;
             returnObj.alert = "alert-success";
         }
     } else {
-        returnObj.msg = `Oh No! ${userInput} is not a plaindrome! This is the output backwards: ${returnObj.reversed}`;
+        returnObj.msg = `Oh No! ${userInput} is not a plaindrome! The string reversed is: ${returnObj.reversed}`;
         returnObj.alert = "alert-danger";
     }
     return returnObj;
