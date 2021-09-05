@@ -24,17 +24,17 @@ function calculatePalindrome(userInput) {
     
     if(userInputNoSpaces == reversed) {
         if(userInputNoSpaces.length == 1) {
-            returnObj.msg = `I guess you could say ${userInput} is a palindrome, but it only contains 1 character!`;
+            returnObj.msg = `I guess you could say "${userInput}" is a palindrome, but it only contains 1 character!`;
             returnObj.alert = "alert-warning";
         } else if(userInputNoSpaces.length < 1) {
             returnObj.msg = `You didn't enter anything! Please enter a word, sentence or phrase`;
             returnObj.alert = "alert-warning";
         } else {
-            returnObj.msg = `Success! ${userInput} is a palindrome! The string reversed is: ${returnObj.reversed}`;
+            returnObj.msg = `Success! "${userInput}" is a palindrome! The string reversed is: "${returnObj.reversed}"`;
             returnObj.alert = "alert-success";
         }
     } else {
-        returnObj.msg = `Oh No! ${userInput} is not a palindrome! The string reversed is: ${returnObj.reversed}`;
+        returnObj.msg = `Oh No! "${userInput}" is not a palindrome! The string reversed is: "${returnObj.reversed}"`;
         returnObj.alert = "alert-danger";
     }
     return returnObj;
