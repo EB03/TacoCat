@@ -34,7 +34,7 @@ function calculatePalindrome(userInput) {
             returnObj.alert = "alert-success";
         }
     } else {
-        returnObj.msg = `Oh No! ${userInput} is not a plaindrome! The string reversed is: ${returnObj.reversed}`;
+        returnObj.msg = `Oh No! ${userInput} is not a palindrome! The string reversed is: ${returnObj.reversed}`;
         returnObj.alert = "alert-danger";
     }
     return returnObj;
