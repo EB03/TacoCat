@@ -1,16 +1,18 @@
 :root {
-    --primary-color: #1d5888;
+    --primary-color: #a7171b;
     --secondary-color: #fac300;
-    --dark-color: #292929;
+    --tertiary-color: #73e6ba;
+    --dark-color: #5a0e11;
     --white-color: #dff3e4;
 }
 
-.odd {
-    font-weight: 100;
+.btn-outline-dark {
+    border-color: #5a0e11;
 }
 
-.even {
-    font-weight: bold;
+.btn-outline-dark:hover {
+    background-color: #5a0e11;
+    color: var(--white-color);
 }
 
 body {
