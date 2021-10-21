@@ -6,6 +6,10 @@
     --white-color: #dff3e4;
 }
 
+.filter-logo{
+    filter: invert(48%) sepia(1%) saturate(2476%) hue-rotate(86deg) brightness(150%) contrast(119%);
+}
+
 .btn-outline-dark {
     border-color: #5a0e11;
 }
